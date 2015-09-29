@@ -21,18 +21,57 @@ function getUserHome() {
 
 var home = process.env.INSIGHT_DB || (getUserHome() + '/.insight');
 
-if (process.env.INSIGHT_NETWORK === 'livenet') {
-  env = 'livenet';
-  db = home;
-  port = '3000';
-  b_port = '8332';
-  p2p_port = '8333';
-} else {
-  env = 'testnet';
-  db = home + '/testnet';
-  port = '3001';
-  b_port = '18332';
-  p2p_port = '18333';
+switch(process.env.INSIGHT_NETWORK) {
+case 'livenet':
+    env = 'livenet';
+    var network = 'livenet';
+    db = home;
+    port = '3001';
+    b_port = '8332';
+    p2p_port = '8333';
+    break;
+default:
+    // Default to bitcoind testnet since that is what was done before.
+case 'testnet':
+    env = 'testnet';
+    var network = 'testnet';
+    db = home + '/testnet';
+    port = '3002';
+    b_port = '18332';
+    p2p_port = '18333';
+    break;
+case 'btcdlivenet':
+    env = 'livenet';
+    var network = 'livenet';
+    db = home;
+    port = '3001';
+    b_port = '8334';
+    p2p_port = '8333';
+    break;
+case 'btcdtestnet':
+    env = 'testnet';
+    var network = 'testnet';
+    db = home + '/testnet';
+    port = '3002';
+    b_port = '18334';
+    p2p_port = '18333';
+    break;
+case 'dcrdlivenet':
+    env = 'dcrdlivenet';
+    var network = 'dcrdlivenet';
+    db = home + '/dcrd';
+    port = '3003';
+    b_port = '9109';
+    p2p_port = '9108';
+    break;
+case 'dcrdtestnet':
+    env = 'dcrdtestnet';
+    var network = 'dcrdtestnet';
+    db = home + '/dcrdtestnet';
+    port = '3004';
+    b_port = '19109';
+    p2p_port = '19108';
+    break;
 }
 port = parseInt(process.env.INSIGHT_PORT) || port;
 
@@ -49,7 +88,6 @@ switch (process.env.NODE_ENV) {
     break;
 }
 
-var network = process.env.INSIGHT_NETWORK || 'testnet';
 var forceRPCsync = process.env.INSIGHT_FORCE_RPC_SYNC;
 
 var dataDir = process.env.BITCOIND_DATADIR;

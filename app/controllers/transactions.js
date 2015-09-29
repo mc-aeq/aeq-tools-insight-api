@@ -136,10 +136,20 @@ exports.list = function(req, res, next) {
       if (page) {
         var spliceInit = page * pageLength;
         txs = block.info.tx.splice(spliceInit, pageLength);
+	if (block.info.stx) {
+	  for (var i = 0; i < block.info.stx.length; i++) {
+	    txs.push(block.info.stx[i]);
+	  }
+	}
         pagesTotal = Math.ceil(txLength / pageLength);
       }
       else {
         txs = block.info.tx;
+	if (block.info.stx) {
+          for (var i = 0; i < block.info.stx.length; i++) {
+	    txs.push(block.info.stx[i]);
+	  }
+	}
       }
 
       async.mapSeries(txs, getTransaction, function(err, results) {
