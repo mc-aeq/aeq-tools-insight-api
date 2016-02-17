@@ -26,6 +26,22 @@ Status.prototype.getInfo = function(next) {
   });
 };
 
+Status.prototype.getCoinSupply = function(next) {
+  var that = this;
+  async.series([
+    function (cb) {
+      rpc.getCoinSupply(function(err, cs){
+        if (err) return cb(err);
+
+        that.coinsupply = cs.result;
+        return cb();
+      });
+    }
+  ], function (err) {
+    return next(err);
+  });
+};
+
 Status.prototype.getDifficulty = function(next) {
   var that = this;
   async.series([

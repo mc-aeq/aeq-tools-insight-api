@@ -24,6 +24,9 @@ exports.show = function(req, res) {
   };
 
   switch(option) {
+    case 'getCoinSupply':
+      statusObject.getCoinSupply(returnJsonp);
+      break;
     case 'getDifficulty':
       statusObject.getDifficulty(returnJsonp);
       break;
