@@ -3,7 +3,7 @@
   "private": true,
   "description": "An open-source bitcoin blockchain API. The Insight API provides you with a convenient, powerful and simple way to query and broadcast data on the bitcoin network and build your own services with it.",
   "version": "0.2.18D",
-  "repository": "https://github.com/decred/insight-api",
+  "repository": "https://github.com/mc-aeq/aeq-tools-insight-api",
   "contributors": [{
     "name": "Matias Alejo Garcia",
     "email": "ematiu@gmail.com"
@@ -24,9 +24,9 @@
     "email": "jungans@gmail.com"
   }],
   "bugs": {
-    "url": "https://github.com/decred/insight-api/issues"
+    "url": "https://github.com/dmc-aeq/aeq-tools-insight-api/issues"
   },
-  "homepage": "https://github.com/decred/insight-api",
+  "homepage": "https://github.com/mc-aeq/aeq-tools-insight-api",
   "license": "MIT",
   "keywords": [
     "insight",
@@ -43,9 +43,9 @@
   "bin": "insight.js",
   "scripts": {
     "start": "node insight.js",
-    "deploy:build": "docker build -t decred/insight-api:$npm_package_version .",
-    "deploy:preflight": "npm run deploy:build && docker run -p 3004:3004 --rm decred/insight-api:$npm_package_version",
-    "deploy:run": "docker run -d -p 3004:3004 decred/insight-api:$npm_package_version"
+    "deploy:build": "docker build -t mc-aeq/aeq-tools-insight-api:$npm_package_version .",
+    "deploy:preflight": "npm run deploy:build && docker run -p 3004:3004 --rm mc-aeq/aeq-tools-insight-api:$npm_package_version",
+    "deploy:run": "docker run -d -p 3004:3004 mc-aeq/aeq-tools-insight-api:$npm_package_version"
   },
   "dependencies": {
     "async": "*",

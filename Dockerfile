@@ -1,7 +1,7 @@
-#DOCKER_IMAGE_TAG=decred/insight-api
+#DOCKER_IMAGE_TAG=mc-aeq/aeq-tools-insight-api
 FROM ubuntu:trusty
 
-LABEL description="Insight API (Decred fork)"
+LABEL description="Insight API (Aequator fork)"
 LABEL version="1.0"
 LABEL maintainer "peter@froggle.org"
 
