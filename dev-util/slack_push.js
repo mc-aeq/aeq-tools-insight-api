@@ -1,6 +1,6 @@
 #!/usr/bin/env node 
 
-var http = require("http");
+var http = require("https");
 
 const postData = JSON.stringify({
   text: 'Hello World!'
@@ -17,15 +17,13 @@ const options = {
   }
 };
 
-var req = http.request(options, function(res) => {
+var req = http.request(options, function(res) {
+  console.log('DATA: ' + JSON.stringify(postData));
   console.log('STATUS: ' + res.statusCode);
   console.log('HEADERS: ' + JSON.stringify(res.headers));
   res.setEncoding('utf8');
-  res.on('data', function (chunk) => {
+  res.on('data', function (chunk) {
     console.log('BODY: ' + chunk);
-  });
-  res.on('end', () => {
-    console.log('No more data in response.');
   });
 });
 
