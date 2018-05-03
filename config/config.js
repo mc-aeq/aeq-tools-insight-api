@@ -9,7 +9,9 @@ var rootPath = path.normalize(__dirname + '/..'),
   db,
   port,
   b_port,
-  p2p_port;
+  p2p_port,
+  slack_hook,
+  be_url;
 
 var packageStr = fs.readFileSync(rootPath + '/package.json');
 var version = JSON.parse(packageStr).version;
@@ -29,6 +31,8 @@ case 'livenet':
     port = '3001';
     b_port = '8332';
     p2p_port = '8333';
+	slack_hook = '';
+	be_url = '';
     break;
 default:
     // Default to bitcoind testnet since that is what was done before.
@@ -39,6 +43,8 @@ case 'testnet':
     port = '3002';
     b_port = '18332';
     p2p_port = '18333';
+	slack_hook = '';
+	be_url = '';
     break;
 case 'btcdlivenet':
     env = 'livenet';
@@ -47,6 +53,8 @@ case 'btcdlivenet':
     port = '3001';
     b_port = '8334';
     p2p_port = '8333';
+	slack_hook = '';
+	be_url = '';
     break;
 case 'btcdtestnet':
     env = 'testnet';
@@ -55,6 +63,8 @@ case 'btcdtestnet':
     port = '3002';
     b_port = '18334';
     p2p_port = '18333';
+	slack_hook = '';
+	be_url = '';
     break;
 case 'aeqdlivenet':
     env = 'aeqdlivenet';
@@ -63,6 +73,8 @@ case 'aeqdlivenet':
     port = '3003';
     b_port = '9109';
     p2p_port = '9108';
+	slack_hook = '/services/xxxxxx/yyyyy/zzzzz';
+	be_url = 'https://live.aequator.io/';
     break;
 case 'aeqdtestnet':
     env = 'aeqdtestnet';
@@ -71,6 +83,8 @@ case 'aeqdtestnet':
     port = '3004';
     b_port = '18332';
     p2p_port = '18333';
+	slack_hook = '/services/xxxxxx/yyyyy/zzzzz';
+	be_url = 'https://test.aequator.io/';
     break;
 }
 port = parseInt(process.env.INSIGHT_PORT) || port;
@@ -157,4 +171,6 @@ module.exports = {
   safeConfirmations: safeConfirmations, // PLEASE NOTE THAT *FULL RESYNC* IS NEEDED TO CHANGE safeConfirmations
   ignoreCache: ignoreCache,
   forceRPCsync: forceRPCsync,
+  slack_hook: slack_hook,
+  be_url: be_url,
 };
